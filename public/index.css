@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'IBM Plex Serif';
+    src: url('/font/IBMPlexSerif-Light.ttf') format('truetype')
+    font-weight: 300;
+    font-style: normal;
+}
+
+div {
+  box-sizing: border-box;
+}
