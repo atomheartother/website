@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Header from "./Header"
+import Typed from "./Typed";
 
 const Content = styled.div`
   background-color: ${p => p.theme.palette.background};
@@ -20,7 +21,11 @@ const RouterContainer = styled.div`
 const Body : React.FC = () => (
     <Content>
       <Header />
-      <RouterContainer />
+      <RouterContainer>
+        <p>
+          <Typed txt={`hi, i'm liz.\u000aI made this website for you, to know me.`} />
+        </p>
+      </RouterContainer>
     </Content>
 )
 
