@@ -2,7 +2,7 @@ import React, {useCallback, useEffect, useRef, useState} from 'react'
 import styled from 'styled-components'
 
 const Blinking = styled.span`
-  animation: blink 0.5s step-start infinite;
+  animation: blink 1s step-start infinite;
 `
 
 type Props = {
