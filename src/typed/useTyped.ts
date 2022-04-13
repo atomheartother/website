@@ -1,32 +1,21 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react'
-import styled from 'styled-components'
+import {useCallback, useEffect, useRef, useState} from "react"
+import type {TypedOptions} from "./types";
 
-const Blinking = styled.span`
-  animation: blink 1s step-start infinite;
-`
-
-type Props = {
-  txt: string // Text to display
-  speed?: number // Text base speed in ms
-  disabled?: boolean // If true, don't start typing yet.
-  disableCursor: boolean // If true, don't display a cursor
-  done?: () => void // Callback for when the text is done
-}
 
 const timingModifiers : {
   [key: string]: number
 } = {
   ' ': 2,
-  ',': 5,
+  ',': 4,
   '.': 10,
 }
 
-const Typed : React.FC<Props> = ({ txt, speed, done, disabled, disableCursor }) => {
+const useTyped = (txt: string, {speed = 20, disabled = false, done = () => {}}: TypedOptions = {}): string => {
   const [idx, setIdx] = useState(0);
   const timeoutId = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const typeNextLetter = useCallback(() => {
-      let letterSpeed = speed || 20;
+      let letterSpeed = speed;
       if (idx > 0) {
         const lastLetter = txt[idx-1];
         if (lastLetter in timingModifiers) {
@@ -51,12 +40,7 @@ const Typed : React.FC<Props> = ({ txt, speed, done, disabled, disableCursor }) 
       }
     }
   }, [typeNextLetter, idx, txt, done, disabled]);
-
-  return (
-      <>
-        {txt.substring(0, idx)}{!disableCursor && <Blinking>|</Blinking>}
-      </>
-    )
+  return txt.substring(0, idx)
 }
 
-export default Typed;
+export default useTyped;
