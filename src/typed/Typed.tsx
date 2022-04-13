@@ -11,8 +11,8 @@ type Props = TypedOptions & {
   txt: string // Text to display
 }
 
-const Typed : React.FC<Props> = ({ txt, speed, done, disabled, disableCursor }) => {
-  const rendered = useTyped(txt, {speed, done, disabled})
+const Typed : React.FC<Props> = ({ txt, delay, done, disabled, disableCursor }) => {
+  const rendered = useTyped(txt, {delay, done, disabled})
   return (
       <>
         {rendered}{!disableCursor && <Blinking>|</Blinking>}
