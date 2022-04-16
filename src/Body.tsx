@@ -16,6 +16,24 @@ const Content = styled.div`
 
 const RouterContainer = styled.div`
   flex: 1;
+  display: flex;
+`
+
+const MainTextContainer = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 10%;
+  padding-right: 10%;
+  & > p {
+    font-family: 'IBM Plex Mono';
+    font-weight: 200;
+    color: #111;
+    font-size: 24pt;
+    line-height: 1.5em;
+  }
 `
 
 const Body : React.FC = () => {
@@ -23,7 +41,9 @@ const Body : React.FC = () => {
     <Content>
       <Header />
       <RouterContainer>
-        <Paragraph lines={["hi, i'm liz.", "i made this website for you, to know me."]} />
+        <MainTextContainer>
+          <Paragraph lines={["hi, i'm liz.", "i made this website for you, to know me."]} />
+        </MainTextContainer>
       </RouterContainer>
     </Content>
   )
