@@ -23,15 +23,13 @@ const MainTextContainer = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
-  padding-left: 10%;
-  padding-right: 10%;
   & > p {
     font-family: 'IBM Plex Mono';
     font-weight: 200;
-    color: #111;
-    font-size: 24pt;
+    color: ${p => p.theme.palette.primary};
+    font-size: 20pt;
     line-height: 1.5em;
   }
 `
@@ -42,7 +40,7 @@ const Body : React.FC = () => {
       <Header />
       <RouterContainer>
         <MainTextContainer>
-          <Paragraph lines={["hi, i'm liz.", "i made this website for you, to know me."]} />
+          <Paragraph lines={["hi, i'm liz.", "i made this website for you, to know me.", "(Press RETURN to continue)"]} />
         </MainTextContainer>
       </RouterContainer>
     </Content>
