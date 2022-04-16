@@ -32,7 +32,7 @@ const useTyped = (txt: string, {delay = 20, disabled = false, done = () => {}}: 
   useEffect(() => {
     if (!disabled && idx < txt.length) {
       typeNextLetter();
-    } else if (done && !doneTriggered) {
+    } else if (idx >= txt.length && done && !doneTriggered) {
       done();
       setDoneTriggered(true);
     }
