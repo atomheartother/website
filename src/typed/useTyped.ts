@@ -12,6 +12,7 @@ const timingModifiers : {
 
 const useTyped = (txt: string, {delay = 20, disabled = false, done = () => {}}: TypedOptions = {}): string => {
   const [idx, setIdx] = useState(0);
+  const [doneTriggered, setDoneTriggered] = useState(false)
   const timeoutId = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const typeNextLetter = useCallback(() => {
@@ -31,15 +32,16 @@ const useTyped = (txt: string, {delay = 20, disabled = false, done = () => {}}: 
   useEffect(() => {
     if (!disabled && idx < txt.length) {
       typeNextLetter();
-    } else if (done) {
+    } else if (done && !doneTriggered) {
       done();
+      setDoneTriggered(true);
     }
     return () => {
       if (timeoutId.current) {
         clearTimeout(timeoutId.current);
       }
     }
-  }, [typeNextLetter, idx, txt, done, disabled]);
+  }, [typeNextLetter, idx, txt, done, disabled, setDoneTriggered, doneTriggered]);
   return txt.substring(0, idx)
 }
 

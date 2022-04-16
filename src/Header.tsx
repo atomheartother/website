@@ -6,6 +6,7 @@ const HeaderContainer = styled.div`
   display: flex;
   height: 60px;
   flex-direction: row;
+  margin-bottom: 20px;
 `
 
 const Header : React.FC = () => (
