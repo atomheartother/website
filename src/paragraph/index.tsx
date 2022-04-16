@@ -9,9 +9,11 @@ type P = {
 const Paragraph : React.FC<P> = ({ lines, lineDelay }) => {
   const [currentLine, setCurrentLine] = useState(0)
   const done = useCallback((idx: number) => {
-      setTimeout(() => {
-          setCurrentLine(idx + 1);
-      }, lineDelay || 600)
+      if (idx < lines.length - 1) {
+        setTimeout(() => {
+            setCurrentLine(idx + 1);
+        }, lineDelay || 600)
+      }
   }, [setCurrentLine, lineDelay])
   return (
       <>
