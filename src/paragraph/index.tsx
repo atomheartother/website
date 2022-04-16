@@ -9,17 +9,15 @@ type P = {
 const Paragraph : React.FC<P> = ({ lines, lineDelay }) => {
   const [currentLine, setCurrentLine] = useState(0)
   const done = useCallback((idx: number) => {
-      if (idx < lines.length - 1) {
-        setTimeout(() => {
-            setCurrentLine(idx + 1);
-        }, lineDelay || 600)
-      }
+      setTimeout(() => {
+          setCurrentLine(idx + 1);
+      }, lineDelay || 600)
   }, [setCurrentLine, lineDelay])
   return (
       <>
         {lines.map((l, idx) => (
           <p key={l}>
-            <Typed disabled={idx !== currentLine} txt={l} disableCursor={idx !== currentLine} done={() => {done(idx)}}/>
+            <Typed disabled={idx !== currentLine} txt={l} disableCursor={!(idx === currentLine || (idx === currentLine - 1 && idx === lines.length - 1))} done={() => {done(idx)}}/>
           </p>
         ))}
       </>
